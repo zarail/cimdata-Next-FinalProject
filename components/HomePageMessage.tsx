@@ -17,13 +17,11 @@ export default function HomePageMessage({
         some amazing recommendations for me. 😊
       </p>
       <p>
-        I’d love to hear your top picks for each of these categories! Your
-        suggestions would really help me out:
+        I’d love to hear your top picks for each of the categories below. Your
+        suggestions would really help me out!
       </p>
       <p>Thank a bunch 💐</p>
       <p>{name}</p>
     </div>
   );
 }
-
-// maybe map the categories here to make the message more dynamic
