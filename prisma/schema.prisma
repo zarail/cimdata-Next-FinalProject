@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Place {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String?
+  images      Image[] // 1:n relationship: a Place can have multiple Images
+  categories  Category[] // n:m relationship: a Place can belong to multiple Categories
+  street      String
+  number      String
+  state       String?
+  zip         String
+  city        String
+}
+
+model Category {
+  id     Int     @id @default(autoincrement())
+  name   String
+  places Place[] // n:m relationship: a Category can have multiple Places
+}
+
+model Image {
+  id      Int    @id @default(autoincrement())
+  url     String
+  placeId Int
+  place   Place  @relation(fields: [placeId], references: [id]) // 1:n relationship: an Image belongs to a Place
+}
