@@ -1,16 +1,29 @@
+import CategoryCard from "@/components/Category/CategoryCard";
 import HomePageMessage from "@/components/HomePageMessage";
 import type { Metadata } from "next";
+import classes from "@/components/Category/CategoryCard.module.css";
 
 export const metadata: Metadata = {
   title: "📍 Hey Local -- Home",
-  description: "Let me visit your city just like you do!",
+  description: "Let me enjoy your city just like you do!",
 };
+
+const categories = ["culture", "sport", "food", "nature", "nightlife"];
 
 export default function Home() {
   return (
     <main className="default-layout">
       <h1>Hey local! 👋</h1>
-      <HomePageMessage name="Zara" city="Barcelona" />
+      <HomePageMessage name="Zara" city="Cologne" />
+      <section>
+        <div className={classes.categoryGrid}>
+          {categories.map((category) => (
+            <li key={category}>
+              <CategoryCard key={category} category={category} />
+            </li>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
