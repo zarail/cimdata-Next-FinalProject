@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import classes from "@/components/Category/CategoryCard.module.css";
 
 export const metadata: Metadata = {
-  title: "📍 Hey Local -- Home",
+  title: "📍 Hey Local",
   description: "Let me enjoy your city just like you do!",
 };
 
