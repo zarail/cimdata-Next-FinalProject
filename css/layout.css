@@ -25,15 +25,22 @@ body {
   padding-block: var(--content-padding);
 }
 
+.header-link {
+  color: var(--nav-link-color);
+  text-decoration: none;
+  font-size: 2rem;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--gray-4);
+  }
+}
+
 .default-layout {
   max-width: 56rem;
   padding-inline: 1rem;
   margin-inline: auto;
 }
-
-/* .site-header a {
-  color: var(--header-footer-link-color);
-} */
 
 /* Hilfsklassen für einheitliches Layout. */
 

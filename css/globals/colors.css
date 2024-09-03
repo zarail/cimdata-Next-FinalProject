@@ -21,8 +21,8 @@
   --heading-color: var(--blue);
   --link-color: var(--pink);
   --link-color-active: var(--blue);
-  /* --nav-link-color: var(--pink);
-  --nav-active-link-color: var(--red); */
+  --nav-link-color: var(--off-white);
+  --nav-active-link-color: var(--red);
   --button-color: var(--off-white);
   --button-background-color: var(--blue);
   --button-border-color: var(--blue);

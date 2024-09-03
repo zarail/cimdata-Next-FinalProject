@@ -6,7 +6,7 @@ export default function Header() {
     <header className="site-header">
       <nav>
         <Link legacyBehavior href="/">
-          <a href="/">
+          <a href="/" className="header-link">
             <TiHome />
           </a>
         </Link>
