@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Let me enjoy your city just like you do!",
 };
 
-const categories = ["culture", "sport", "food", "nature", "nightlife"];
+const categories = ["culture", "sport", "food", "nightlife"];
 
 export default function Home() {
   return (
