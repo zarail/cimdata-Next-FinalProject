@@ -2,6 +2,8 @@ import PlaceCard from "@/components/Place/PlaceCard";
 import prisma from "@/prisma/db";
 import type { Metadata } from "next";
 import classes from "@/components/Category/CategoryCard.module.css";
+import Link from "next/link";
+import { MdAddBox } from "react-icons/md";
 
 type Props = {
   params: {
@@ -27,6 +29,15 @@ export default async function CategoryPage({ params: { category } }: Props) {
     <div>
       <h1>{categoryData.name}</h1>
       {categoryData.places.length > 0 ? (
+        <Link href="/place/add-new">
+          <h3>
+            <MdAddBox />
+          </h3>
+        </Link>
+      ) : (
+        ""
+      )}
+      {categoryData.places.length > 0 ? (
         <div className={classes.categoryGrid}>
           {categoryData.places.map((place) => (
             <li key={place.id}>
@@ -35,7 +46,14 @@ export default async function CategoryPage({ params: { category } }: Props) {
           ))}
         </div>
       ) : (
-        <p>No entry yet. Add the first place!</p>
+        <div>
+          <p>No entry yet!</p>
+          <Link href="/place/add-new">
+            <h3>
+              <MdAddBox />
+            </h3>
+          </Link>
+        </div>
       )}
     </div>
   );
