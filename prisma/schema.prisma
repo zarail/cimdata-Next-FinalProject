@@ -23,7 +23,6 @@ model Place {
   categories  Category[] // n:m relationship: a Place can belong to multiple Categories
   street      String
   number      String
-  state       String?
   zip         String
   city        String
 }
