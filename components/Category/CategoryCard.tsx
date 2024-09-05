@@ -8,8 +8,11 @@ type Props = {
 export default function CategoryCard({ category }: Props) {
   return (
     <div className={classes.categoryCard}>
-      <Link className={classes.cardLink} href={`/category/${category}`}>
-        <h3 className={classes.cardTitle}>{category.toUpperCase()}</h3>
+      <Link
+        className={classes.cardLink}
+        href={`/category/${category.toLowerCase()}`}
+      >
+        <h4 className={classes.cardTitle}>{category.toUpperCase()}</h4>
       </Link>
     </div>
   );
