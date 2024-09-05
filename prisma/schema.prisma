@@ -21,10 +21,10 @@ model Place {
   description String?
   images      Image[] // 1:n relationship: a Place can have multiple Images
   categories  Category[] // n:m relationship: a Place can belong to multiple Categories
-  street      String
-  number      String
-  zip         String
-  city        String
+  street      String?
+  number      String?
+  zip         String?
+  city        String?
 }
 
 model Category {
