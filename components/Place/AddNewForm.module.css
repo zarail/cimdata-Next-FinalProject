@@ -1,35 +1,63 @@
 .form {
   display: grid;
-  gap: 1rem;
-
-  /* 
-  label {
-    font-weight: bold;
-  } */
+  gap: 1.5rem;
+  max-width: 800px;
 
   > div {
     label {
       display: block;
+      margin-bottom: 0.5rem;
     }
   }
 
   textarea {
     width: 100%;
-    max-width: 50ch;
     resize: vertical;
     min-height: 8lh;
   }
 
   fieldset {
+    margin-bottom: 1.5rem;
     label {
       display: flex;
       gap: 0.25em;
-      &:not(:last-of-type) {
-        margin-bottom: 0.5rem;
-      }
     }
     legend {
       font-weight: bold;
     }
+  }
+
+  .name {
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    width: 100%;
+    min-height: 150px;
+  }
+
+  fieldset > div {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  fieldset.category {
+    display: flex;
+    gap: 1.5rem; /* Add space between the categories */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  }
+
+  fieldset.addressGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .submitButtonContainer button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-block;
   }
 }
