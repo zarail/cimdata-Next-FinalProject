@@ -1,73 +1,108 @@
 "use client";
 
 import type { Category, Image } from "@prisma/client";
+import classes from "./AddNewForm.module.css";
+import { useFormState } from "react-dom";
+import { addNewPlace } from "@/components/Place/PlaceServerActions";
+import Link from "next/link";
+import SubmitButton from "./SubmitButton";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   categories: Category[];
   images: Image[];
 };
-
 export default function AddNewForm({ categories, images }: Props) {
+  const [formState, formAction] = useFormState(addNewPlace, {
+    message: "",
+    status: "",
+    slug: "",
+  });
+
+  const [text, setText] = useState("");
+  const maxChars = 500;
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (formState.status === "success" && formRef.current) {
+      formRef.current.reset();
+    }
+  }, [formState.status]);
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+  };
+
   return (
-    <form>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          minLength={2}
-          maxLength={100}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="description">Description</label>
-        <textarea
-          name="description"
-          id="description"
-          minLength={2}
-          maxLength={1000}
-        />
-      </div>
-      <div>
-        <label htmlFor="categoryId">Category</label>
-        <select name="categoryId" id="categoryId" required>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <p>Address</p>
+    <form
+      className={classes.form}
+      action={formAction}
+      ref={formRef}
+      encType="multipart/form-data"
+    >
+      <fieldset>
+        <div>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            minLength={2}
+            maxLength={100}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="description">Description</label>
+          <textarea
+            name="description"
+            id="description"
+            value={text}
+            onChange={handleTextChange}
+            minLength={2}
+            maxLength={maxChars}
+          />
+          <div>
+            {maxChars - text.length}/{maxChars} characters left
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Category</legend>
+        {categories.map((category) => (
+          <div key={category.id}>
+            <input
+              type="radio"
+              id={`category-${category.id}`}
+              name="categoryId"
+              value={category.id}
+              required
+            />
+            <label htmlFor={`category-${category.id}`}>{category.name}</label>
+          </div>
+        ))}
+      </fieldset>
+      <fieldset>
+        <legend>Address</legend>
         <label htmlFor="street">Street</label>
         <input
           type="text"
           name="street"
           id="street"
-          minLength={2}
+          minLength={1}
           maxLength={100}
-          required
         />
         <label htmlFor="number">Number</label>
         <input
           type="text"
           name="number"
           id="number"
-          minLength={2}
+          minLength={0}
           maxLength={10}
-          required
         />
         <label htmlFor="zipcode">Zipcode</label>
-        <input
-          type="text"
-          name="zipcode"
-          id="zip"
-          minLength={2}
-          maxLength={100}
-        />
+        <input type="text" name="zip" id="zip" minLength={5} maxLength={5} />
         <label htmlFor="city">City</label>
         <input
           type="text"
@@ -75,28 +110,27 @@ export default function AddNewForm({ categories, images }: Props) {
           id="city"
           minLength={2}
           maxLength={100}
-          required
         />
-        <label htmlFor="state">State</label>
+      </fieldset>
+      <fieldset>
+        <legend>Upload Images</legend>
         <input
-          type="text"
-          name="state"
-          id="state"
-          minLength={2}
-          maxLength={100}
+          type="file"
+          name="images"
+          id="images"
+          accept="image/*"
+          multiple
         />
-      </div>
-      {/* <div>
-        <label htmlFor="images">Images</label>
-        <select name="images" id="images" multiple>
-          {images.map((image) => (
-            <option key={image.id} value={image.id}>
-              {image.url}
-            </option>
-          ))}
-        </select>
-      </div> */}
-      <button type="submit">Add Place</button>
+      </fieldset>
+
+      <SubmitButton />
+      <strong>{formState.message}</strong>
+
+      {formState.status === "success" && (
+        <Link href={`/place/${formState.slug}`}>
+          <strong>View newly added place</strong>
+        </Link>
+      )}
     </form>
   );
 }
