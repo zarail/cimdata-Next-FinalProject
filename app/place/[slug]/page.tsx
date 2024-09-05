@@ -25,11 +25,18 @@ export default async function PlacePage({ params: { slug } }: Props) {
       <h1>{name}</h1>
       <p>{description}</p>
       <p>
-        {street} {number}, {zip} {city}
+        Address:{" "}
+        {number && street && zip && city ? (
+          `${street} ${number}, ${zip} ${city}`
+        ) : street && !number && zip && city ? (
+          `${street}, ${zip} ${city}`
+        ) : street && number && !zip && !city ? (
+          `${street} ${number}`
+        ) : (
+          <em>No address available</em>
+        )}
       </p>
-      <p>
-        Categories: {categories.map((category) => category.name).join(", ")}
-      </p>
+      <p>Category: {categories.map((category) => category.name).join(", ")}</p>
       {images.length > 0 && (
         <div>
           {images.map((image) => (
