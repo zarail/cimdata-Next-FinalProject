@@ -23,17 +23,65 @@ body {
   color: var(--header-footer-color);
   background-color: var(--header-footer-background-color);
   padding-block: var(--content-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .header-link {
   color: var(--nav-link-color);
   text-decoration: none;
-  font-size: 2rem;
+  display: flex;
+  align-items: center;
 
   &:hover,
   &:focus-visible {
     color: var(--gray-4);
   }
+}
+
+.categories-container {
+  position: relative; /* This is key for positioning the dropdown */
+}
+
+/* Dropdown styles */
+.categories-dropdown {
+  position: absolute;
+  top: 100%; /* Position it below the "Categories" link */
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.categories-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories-dropdown li {
+  padding: 0.75rem 1rem;
+}
+
+.categories-dropdown li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.categories-dropdown li a:hover {
+  background-color: #f0f0f0;
 }
 
 .default-layout {
