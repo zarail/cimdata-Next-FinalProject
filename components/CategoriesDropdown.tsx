@@ -14,7 +14,10 @@ export default function CategoriesDropdown({
       <ul>
         {categories.map((category, index) => (
           <li key={index}>
-            <Link href={`/category/${category}`} onClick={onItemClick}>
+            <Link
+              href={`/category/${category.toLowerCase()}`}
+              onClick={onItemClick}
+            >
               {category}
             </Link>
           </li>
