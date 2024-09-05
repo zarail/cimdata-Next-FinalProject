@@ -3,7 +3,7 @@ import prisma from "@/prisma/db";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Add New Place",
+  title: "📍 Add New Place",
 };
 
 export default async function AddNewPage({}) {
@@ -26,8 +26,8 @@ export default async function AddNewPage({}) {
   });
 
   return (
-    <div>
-      <h1>Add a new place</h1>
+    <div className="container">
+      <h3>Add a new place</h3>
       <AddNewForm categories={categories} images={images} />
     </div>
   );

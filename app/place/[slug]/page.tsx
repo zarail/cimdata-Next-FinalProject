@@ -21,9 +21,9 @@ export default async function PlacePage({ params: { slug } }: Props) {
     placeData;
 
   return (
-    <div>
-      <h1>{name}</h1>
-      <p>{description}</p>
+    <div className="container">
+      <h3>{name}</h3>
+      <p>{description ?? "No description"}</p>
       <p>
         Address:{" "}
         {number && street && zip && city ? (
