@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.19.0",
+    "cloudinary": "^2.4.0",
     "es-toolkit": "^1.17.0",
     "next": "^14.2.7",
     "open-props": "^1.7.6",
