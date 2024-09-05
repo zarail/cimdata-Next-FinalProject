@@ -48,6 +48,7 @@ export default function AddNewForm({ categories, images }: Props) {
             type="text"
             name="name"
             id="name"
+            className={classes.name}
             minLength={2}
             maxLength={100}
             required
@@ -58,6 +59,7 @@ export default function AddNewForm({ categories, images }: Props) {
           <textarea
             name="description"
             id="description"
+            className={classes.description}
             value={text}
             onChange={handleTextChange}
             minLength={2}
@@ -68,7 +70,7 @@ export default function AddNewForm({ categories, images }: Props) {
           </div>
         </div>
       </fieldset>
-      <fieldset>
+      <fieldset className={classes.category}>
         <legend>Category</legend>
         {categories.map((category) => (
           <div key={category.id}>
@@ -79,38 +81,48 @@ export default function AddNewForm({ categories, images }: Props) {
               value={category.id}
               required
             />
-            <label htmlFor={`category-${category.id}`}>{category.name}</label>
+            <div>
+              <label htmlFor={`category-${category.id}`}>{category.name}</label>
+            </div>
           </div>
         ))}
       </fieldset>
-      <fieldset>
+      <fieldset className={classes.addressGrid}>
         <legend>Address</legend>
-        <label htmlFor="street">Street</label>
-        <input
-          type="text"
-          name="street"
-          id="street"
-          minLength={1}
-          maxLength={100}
-        />
-        <label htmlFor="number">Number</label>
-        <input
-          type="text"
-          name="number"
-          id="number"
-          minLength={0}
-          maxLength={10}
-        />
-        <label htmlFor="zipcode">Zipcode</label>
-        <input type="text" name="zip" id="zip" minLength={5} maxLength={5} />
-        <label htmlFor="city">City</label>
-        <input
-          type="text"
-          name="city"
-          id="city"
-          minLength={2}
-          maxLength={100}
-        />
+        <div>
+          <label htmlFor="street">Street</label>
+          <input
+            type="text"
+            name="street"
+            id="street"
+            minLength={1}
+            maxLength={100}
+          />
+        </div>
+        <div>
+          <label htmlFor="number">Number</label>
+          <input
+            type="text"
+            name="number"
+            id="number"
+            minLength={0}
+            maxLength={10}
+          />
+        </div>
+        <div>
+          <label htmlFor="zipcode">Zipcode</label>
+          <input type="text" name="zip" id="zip" minLength={5} maxLength={5} />
+        </div>
+        <div>
+          <label htmlFor="city">City</label>
+          <input
+            type="text"
+            name="city"
+            id="city"
+            minLength={2}
+            maxLength={100}
+          />
+        </div>
       </fieldset>
       <fieldset>
         <legend>Upload Images</legend>
@@ -123,7 +135,9 @@ export default function AddNewForm({ categories, images }: Props) {
         />
       </fieldset>
 
-      <SubmitButton />
+      <div className={classes.submitButtonContainer}>
+        <SubmitButton />
+      </div>
       <strong>{formState.message}</strong>
 
       {formState.status === "success" && (
