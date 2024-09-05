@@ -17,9 +17,7 @@ export default async function CategoryPage({ params: { category } }: Props) {
   if (!categoryData) {
     return (
       <div>
-        <h1>
-          {category.charAt(0).toUpperCase() + category.slice(1).toLowerCase()}
-        </h1>
+        <h1>{category}</h1>
         <p>No entry yet. Add the first place!</p>
       </div>
     );
@@ -28,15 +26,6 @@ export default async function CategoryPage({ params: { category } }: Props) {
   return (
     <div>
       <h1>{categoryData.name}</h1>
-      {categoryData.places.length > 0 ? (
-        <Link href="/place/add-new">
-          <h3>
-            <MdAddBox />
-          </h3>
-        </Link>
-      ) : (
-        ""
-      )}
       {categoryData.places.length > 0 ? (
         <div className={classes.categoryGrid}>
           {categoryData.places.map((place) => (
@@ -47,12 +36,7 @@ export default async function CategoryPage({ params: { category } }: Props) {
         </div>
       ) : (
         <div>
-          <p>No entry yet!</p>
-          <Link href="/place/add-new">
-            <h3>
-              <MdAddBox />
-            </h3>
-          </Link>
+          <h3>No places in this category yet!</h3>
         </div>
       )}
     </div>
