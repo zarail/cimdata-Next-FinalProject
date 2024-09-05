@@ -3,6 +3,10 @@ body {
   background-color: var(--body-background);
 }
 
+.container {
+  margin: 2rem;
+}
+
 .site-wrapper {
   display: flex;
   flex-direction: column;
@@ -21,7 +25,7 @@ body {
 .site-header,
 .site-footer {
   color: var(--header-footer-color);
-  background-color: var(--header-footer-background-color);
+  background-color: var(--red-11);
   padding-block: var(--content-padding);
   display: flex;
   justify-content: space-between;
@@ -88,6 +92,7 @@ body {
   max-width: 56rem;
   padding-inline: 1rem;
   margin-inline: auto;
+  align-items: left;
 }
 
 /* Hilfsklassen für einheitliches Layout. */

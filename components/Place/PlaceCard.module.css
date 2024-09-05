@@ -1,8 +1,10 @@
-.categoryCard {
+.placeCard {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
-  margin: 8px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 2rem;
   text-align: center;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -10,17 +12,17 @@
   flex: 1 1 calc(33.333% - 16px);
 }
 
+.placeCard:hover {
+  transform: scale(1.05);
+}
 .categoryGrid {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.categoryCard:hover {
-  transform: scale(1.05);
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 2rem;
 }
 
 .cardLink {
