@@ -1,0 +1,35 @@
+.form {
+  display: grid;
+  gap: 1rem;
+
+  /* 
+  label {
+    font-weight: bold;
+  } */
+
+  > div {
+    label {
+      display: block;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    max-width: 50ch;
+    resize: vertical;
+    min-height: 8lh;
+  }
+
+  fieldset {
+    label {
+      display: flex;
+      gap: 0.25em;
+      &:not(:last-of-type) {
+        margin-bottom: 0.5rem;
+      }
+    }
+    legend {
+      font-weight: bold;
+    }
+  }
+}

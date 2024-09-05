@@ -1,9 +1,9 @@
 a {
-  color: var(--nav-link-color);
-  text-decoration-thickness: 0.1em;
+  color: var(--link-color-active);
+  text-decoration: none;
   &:hover,
   &:focus-visible {
     color: var(--nav-active-link-color);
-    text-decoration-thickness: 0.15em;
+    text-decoration: none;
   }
 }
