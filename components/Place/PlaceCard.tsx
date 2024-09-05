@@ -6,7 +6,7 @@ type Props = Place;
 
 export default function PlaceCard({ name, slug }: Props) {
   return (
-    <div className={classes.categoryCard}>
+    <div className={classes.placeCard}>
       <Link className={classes.cardLink} href={`/place/${slug}`}>
         <h3 className={classes.cardTitle}>{name}</h3>
       </Link>
