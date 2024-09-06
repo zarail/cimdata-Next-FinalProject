@@ -41,7 +41,7 @@ export default async function CategoryPage({ params: { category } }: Props) {
       <Link href="/place/add-new">
         <h6>
           <em>
-            <strong>+ Add a new place for "{category}"</strong>
+            <strong>+ Add a new place for &quot;{category}&quot;</strong>
           </em>
         </h6>
       </Link>
