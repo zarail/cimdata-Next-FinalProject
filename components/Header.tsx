@@ -20,7 +20,7 @@ export default function Header({ categories }: HeaderProps) {
       <div className="logo-container">
         <Link href="/" className="header-link">
           <MdHome size={30} />
-          <strong> Hey Local</strong>
+          <strong>Hey Local</strong>
         </Link>
         <div className="categories-container">
           <a
@@ -40,7 +40,7 @@ export default function Header({ categories }: HeaderProps) {
         </div>
         <Link href="/place/add-new" className="header-link">
           <MdAddBox size={30} />
-          <strong> Add a new place</strong>
+          <strong>Add a new place</strong>
         </Link>
       </div>
     </header>
