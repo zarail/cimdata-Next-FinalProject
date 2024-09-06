@@ -1,5 +1,6 @@
 import "@/css/style.css";
 import type { ReactNode } from "react";
+import { SessionProvider } from "next-auth/react";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,9 +11,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="de">
       <body>
         <div className="site-wrapper">
-          <Header categories={sortedCategories} />
-          <div className="site-content">{children}</div>
-          <Footer />
+          <SessionProvider>
+            <Header categories={sortedCategories} />
+            <div className="site-content">{children}</div>
+            <Footer />
+          </SessionProvider>
         </div>
       </body>
     </html>
