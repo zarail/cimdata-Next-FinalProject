@@ -18,9 +18,9 @@ export default function HomePageMessage({
       </p>
       <p>
         I’d love to hear your top picks for each of the categories below. Just
-        choose a category and add your suggestions!
+        add your suggestions for each category using the form!
       </p>
-      <p>Thank a bunch 💐</p>
+      <p>Thanks a bunch 💐</p>
       <p>{name}</p>
     </div>
   );
