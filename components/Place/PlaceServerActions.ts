@@ -44,6 +44,7 @@ export async function addNewPlace(formstate: unknown, formData: FormData) {
     number: zfd.text(z.string().min(1).max(10).optional()),
     zip: zfd.text(z.string().min(5).max(5).optional()),
     city: zfd.text(z.string().min(2).max(100).optional()),
+    userName: zfd.text(z.string().min(2).max(100).optional()),
   });
 
   const { success, data, error } = schema.safeParse(formData);
@@ -108,6 +109,7 @@ export async function addNewPlace(formstate: unknown, formData: FormData) {
       images: {
         create: uploadedImageUrls.map((url) => ({ url })),
       },
+      userName: data.userName || "Anonymous",
     },
   });
 
