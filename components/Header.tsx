@@ -23,14 +23,14 @@ export default function Header({ categories }: HeaderProps) {
           <strong>Hey Local</strong>
         </Link>
         <div className="categories-container">
-          <a
-            className="header-link"
+          <button
+            className="header-link github-button"
             onClick={toggleDropdown}
             style={{ cursor: "pointer" }}
           >
             <TbCategoryFilled size={30} />
             <strong>Categories</strong>
-          </a>
+          </button>
           {isDropdownOpen && (
             <CategoriesDropdown
               categories={categories}
