@@ -2,7 +2,6 @@ import prisma from "@/prisma/db";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PlaceImage from "@/components/Place/PlaceImage";
-// import classes from "@/components/Place/PlaceImage.module.css";
 
 type Props = {
   params: {
@@ -17,15 +16,24 @@ export default async function PlacePage({ params: { slug } }: Props) {
     notFound();
   }
 
-  const { name, description, street, number, zip, city, categories, images } =
-    placeData;
+  const {
+    name,
+    description,
+    street,
+    number,
+    zip,
+    city,
+    categories,
+    images,
+    userName,
+  } = placeData;
 
   return (
     <div className="container">
       <h3>{name}</h3>
       <p>{description ?? "No description"}</p>
       <p>
-        Address:{" "}
+        <strong>Address:</strong>{" "}
         {number && street && zip && city ? (
           `${street} ${number}, ${zip} ${city}`
         ) : street && !number && zip && city ? (
@@ -36,7 +44,13 @@ export default async function PlacePage({ params: { slug } }: Props) {
           <em>No address available</em>
         )}
       </p>
-      <p>Category: {categories.map((category) => category.name).join(", ")}</p>
+      <p>
+        <strong>Category:</strong>{" "}
+        {categories.map((category) => category.name).join(", ")}
+      </p>
+      <p>
+        <strong>Posted by:</strong> {userName ?? "Anonymous User"}
+      </p>
       {images.length > 0 && (
         <div>
           {images.map((image) => (
