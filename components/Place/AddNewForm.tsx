@@ -7,12 +7,16 @@ import { addNewPlace } from "@/components/Place/PlaceServerActions";
 import Link from "next/link";
 import SubmitButton from "./SubmitButton";
 import { useEffect, useRef, useState } from "react";
+import { useSession } from "next-auth/react";
 
 type Props = {
   categories: Category[];
   images: Image[];
 };
+
 export default function AddNewForm({ categories, images }: Props) {
+  const { data: session, status } = useSession();
+
   const [formState, formAction] = useFormState(addNewPlace, {
     message: "",
     status: "",
@@ -20,6 +24,9 @@ export default function AddNewForm({ categories, images }: Props) {
   });
 
   const [text, setText] = useState("");
+
+  const [useSessionName, setUseSessionName] = useState(false);
+
   const maxChars = 500;
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -34,12 +41,27 @@ export default function AddNewForm({ categories, images }: Props) {
     setText(e.target.value);
   };
 
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUseSessionName(e.target.checked);
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (useSessionName && session?.user?.name) {
+      const hiddenUserNameInput = document.createElement("input");
+      hiddenUserNameInput.type = "hidden";
+      hiddenUserNameInput.name = "userName";
+      hiddenUserNameInput.value = session.user.name;
+      formRef.current?.appendChild(hiddenUserNameInput);
+    }
+  };
+
   return (
     <form
       className={classes.form}
       action={formAction}
       ref={formRef}
       encType="multipart/form-data"
+      onSubmit={handleFormSubmit}
     >
       <fieldset>
         <div>
@@ -134,9 +156,25 @@ export default function AddNewForm({ categories, images }: Props) {
           multiple
         />
       </fieldset>
+      <fieldset className={classes.category}>
+        <legend>User Info</legend>
+        <div>
+          <input
+            type="checkbox"
+            name="useSessionName"
+            id="useSessionName"
+            onChange={handleCheckboxChange}
+          />
+          <div>
+            <label htmlFor="useSessionName">
+              Post as {session?.user?.name}
+            </label>
+          </div>
+        </div>
+      </fieldset>
 
       <div className={classes.submitButtonContainer}>
-        <SubmitButton />
+        <SubmitButton className="button" />
       </div>
       <strong>{formState.message}</strong>
 
