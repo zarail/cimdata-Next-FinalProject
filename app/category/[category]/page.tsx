@@ -2,6 +2,7 @@ import PlaceCard from "@/components/Place/PlaceCard";
 import prisma from "@/prisma/db";
 import type { Metadata } from "next";
 import classes from "@/components/Category/CategoryCard.module.css";
+import Link from "next/link";
 
 type Props = {
   params: {
@@ -34,9 +35,16 @@ export default async function CategoryPage({ params: { category } }: Props) {
         </div>
       ) : (
         <div>
-          <h5>No places in this category yet!</h5>
+          <h6>No places in this category yet!</h6>
         </div>
       )}
+      <Link href="/place/add-new">
+        <h6>
+          <em>
+            <strong>+ Add a new place for "{category}"</strong>
+          </em>
+        </h6>
+      </Link>
     </div>
   );
 }
