@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,23 +13,24 @@ model Place {
   name        String
   slug        String     @unique
   description String?
-  images      Image[] // 1:n relationship: a Place can have multiple Images
-  categories  Category[] // n:m relationship: a Place can belong to multiple Categories
+  images      Image[]
+  categories  Category[]
   street      String?
   number      String?
   zip         String?
   city        String?
+  userName    String?
 }
 
 model Category {
   id     Int     @id @default(autoincrement())
   name   String
-  places Place[] // n:m relationship: a Category can have multiple Places
+  places Place[]
 }
 
 model Image {
   id      Int    @id @default(autoincrement())
   url     String
   placeId Int
-  place   Place  @relation(fields: [placeId], references: [id]) // 1:n relationship: an Image belongs to a Place
+  place   Place  @relation(fields: [placeId], references: [id])
 }
