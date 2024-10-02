@@ -64,7 +64,7 @@ input[type="submit"] {
 
   &:hover,
   &:focus-visible {
-    color: var(--button-color-active, var(--off-white));
+    color: var(--gray-4);
     background-color: var(--red-11, var(--red-11));
   }
 
